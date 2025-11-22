@@ -2,11 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
+import LoginModal from './LoginModal';
+import SignupModal from './SignupModal';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [serviceDropdownOpen, setServiceDropdownOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -141,8 +145,8 @@ export default function Header() {
 
           {/* 우측 메뉴 */}
           <div className="hidden md:flex items-center gap-3">
-            <a
-              href="#login"
+            <button
+              onClick={() => setIsLoginModalOpen(true)}
               className={`px-6 py-2.5 rounded-full font-medium transition-all ${
                 isScrolled
                   ? 'text-black hover:bg-gray-100'
@@ -150,8 +154,9 @@ export default function Header() {
               }`}
             >
               로그인
-            </a>
+            </button>
             <button
+              onClick={() => setIsSignupModalOpen(true)}
               className={`px-6 py-2.5 rounded-full font-medium transition-all overflow-hidden relative group ${
                 isScrolled
                   ? 'bg-black text-white hover:shadow-lg'
@@ -218,30 +223,55 @@ export default function Header() {
             >
               요금제
             </a>
-            <a
-              href="#login"
-              className={`block px-6 py-2.5 rounded-full font-medium transition-all ${
+            <button
+              className={`block px-6 py-2.5 rounded-full font-medium transition-all text-left ${
                 isScrolled
                   ? 'text-black hover:bg-gray-100'
                   : 'text-white hover:bg-white/10'
               }`}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsLoginModalOpen(true);
+              }}
             >
               로그인
-            </a>
+            </button>
             <button
               className={`w-full py-2.5 px-6 rounded-full font-medium transition-all ${
                 isScrolled
                   ? 'bg-black text-white hover:shadow-lg'
                   : 'bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-lg'
               }`}
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsSignupModalOpen(true);
+              }}
             >
               회원가입
             </button>
           </nav>
         </div>
       </div>
+
+      {/* 로그인 모달 */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onSwitchToSignup={() => {
+          setIsLoginModalOpen(false);
+          setIsSignupModalOpen(true);
+        }}
+      />
+
+      {/* 회원가입 모달 */}
+      <SignupModal
+        isOpen={isSignupModalOpen}
+        onClose={() => setIsSignupModalOpen(false)}
+        onSwitchToLogin={() => {
+          setIsSignupModalOpen(false);
+          setIsLoginModalOpen(true);
+        }}
+      />
     </header>
   );
 }
