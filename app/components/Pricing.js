@@ -5,7 +5,7 @@ export default function Pricing() {
         <section id="pricing" className="py-32 px-4 bg-black relative overflow-hidden">
             {/* Background Gradients */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
-                <div className="absolute top-40 left-20 w-96 h-96 bg-purple-900/20 rounded-full blur-3xl"></div>
+                <div className="absolute top-40 left-20 w-96 h-96 bg-orange-900/20 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-40 right-20 w-96 h-96 bg-orange-900/20 rounded-full blur-3xl"></div>
             </div>
 
@@ -23,7 +23,7 @@ export default function Pricing() {
 
                 <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {/* Free Plan */}
-                    <div className="group relative p-8 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-gray-700 transition-all duration-300 hover:-translate-y-1">
+                    <div className="group relative p-8 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-orange-900/10">
                         <h3 className="text-2xl font-bold text-white mb-2">Starter</h3>
                         <div className="flex items-baseline mb-6">
                             <span className="text-4xl font-bold text-white">₩0</span>
@@ -52,43 +52,43 @@ export default function Pricing() {
                     </div>
 
                     {/* Pro Plan */}
-                    <div className="group relative p-8 rounded-2xl bg-gray-900/80 border border-purple-500/30 hover:border-purple-500 transition-all duration-300 hover:-translate-y-2 shadow-2xl shadow-purple-900/20">
-                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-xs font-bold text-white tracking-wider uppercase">
+                    <div className="group relative p-8 rounded-2xl bg-gray-900/80 border border-orange-500/30 hover:border-orange-500 transition-all duration-300 hover:-translate-y-2 shadow-2xl shadow-orange-900/20">
+                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full text-xs font-bold text-white tracking-wider uppercase">
                             Most Popular
                         </div>
                         <h3 className="text-2xl font-bold text-white mb-2">Pro</h3>
                         <div className="flex items-baseline mb-6">
-                            <span className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">₩29,000</span>
+                            <span className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-400">₩29,000</span>
                             <span className="text-gray-500 ml-2">/월</span>
                         </div>
                         <p className="text-gray-400 mb-8 h-12">
                             본격적인 작품 활동을 위한<br />모든 기능 잠금 해제
                         </p>
-                        <button className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold hover:opacity-90 transition-opacity mb-8 shadow-lg shadow-purple-900/30">
+                        <button className="w-full py-4 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold hover:opacity-90 transition-opacity mb-8 shadow-lg shadow-orange-900/30">
                             지금 시작하기
                         </button>
                         <ul className="space-y-4 text-gray-300">
                             <li className="flex items-center">
-                                <svg className="w-5 h-5 text-purple-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                                <svg className="w-5 h-5 text-orange-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                                 모든 AI 도구 무제한
                             </li>
                             <li className="flex items-center">
-                                <svg className="w-5 h-5 text-purple-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                                <svg className="w-5 h-5 text-orange-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                                 무제한 프로젝트 생성
                             </li>
                             <li className="flex items-center">
-                                <svg className="w-5 h-5 text-purple-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                                <svg className="w-5 h-5 text-orange-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                                 4K 고화질 내보내기
                             </li>
                             <li className="flex items-center">
-                                <svg className="w-5 h-5 text-purple-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                                <svg className="w-5 h-5 text-orange-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                                 우선 고객 지원
                             </li>
                         </ul>
                     </div>
 
                     {/* Enterprise Plan */}
-                    <div className="group relative p-8 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-gray-700 transition-all duration-300 hover:-translate-y-1">
+                    <div className="group relative p-8 rounded-2xl bg-gray-900/50 border border-gray-800 hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-orange-900/10">
                         <h3 className="text-2xl font-bold text-white mb-2">Enterprise</h3>
                         <div className="flex items-baseline mb-6">
                             <span className="text-4xl font-bold text-white">문의</span>

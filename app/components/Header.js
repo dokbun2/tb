@@ -58,11 +58,10 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 mt-[30px] px-4 sm:px-6 lg:px-8">
       <div
-        className={`max-w-6xl mx-auto transition-all duration-300 rounded-full ${
-          isScrolled
+        className={`max-w-6xl mx-auto transition-all duration-300 rounded-full ${isScrolled
             ? 'bg-white text-black shadow-md'
             : 'bg-transparent text-white'
-        }`}
+          }`}
       >
         <div className="flex items-center justify-between h-16 px-6">
           {/* 로고 */}
@@ -75,11 +74,10 @@ export default function Header() {
             </div>
             <span className="text-xl font-bold">TOOLBEE PLUS</span>
             <span
-              className={`text-xs px-2 py-0.5 rounded-full border ${
-                isScrolled
+              className={`text-xs px-2 py-0.5 rounded-full border ${isScrolled
                   ? 'border-gray-400 text-gray-600'
                   : 'border-white/50 text-white/80'
-              }`}
+                }`}
             >
               beta
             </span>
@@ -92,11 +90,10 @@ export default function Header() {
               <button
                 onClick={() => setServiceDropdownOpen(!serviceDropdownOpen)}
                 onMouseEnter={() => setServiceDropdownOpen(true)}
-                className={`flex items-center gap-1 transition-colors ${
-                  isScrolled
+                className={`flex items-center gap-1 transition-colors ${isScrolled
                     ? 'text-black hover:text-gray-600'
                     : 'text-white hover:text-gray-200'
-                }`}
+                  }`}
               >
                 서비스
                 <ChevronDown className="w-4 h-4" />
@@ -133,11 +130,10 @@ export default function Header() {
 
             <a
               href="#pricing"
-              className={`transition-colors ${
-                isScrolled
+              className={`transition-colors ${isScrolled
                   ? 'text-black hover:text-gray-600'
                   : 'text-white hover:text-gray-200'
-              }`}
+                }`}
             >
               요금제
             </a>
@@ -147,21 +143,19 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-3">
             <button
               onClick={() => setIsLoginModalOpen(true)}
-              className={`px-6 py-2.5 rounded-full font-medium transition-all ${
-                isScrolled
+              className={`px-6 py-2.5 rounded-full font-medium transition-all ${isScrolled
                   ? 'text-black hover:bg-gray-100'
                   : 'text-white hover:bg-white/10'
-              }`}
+                }`}
             >
               로그인
             </button>
             <button
               onClick={() => setIsSignupModalOpen(true)}
-              className={`px-6 py-2.5 rounded-full font-medium transition-all overflow-hidden relative group ${
-                isScrolled
+              className={`px-6 py-2.5 rounded-full font-medium transition-all overflow-hidden relative group ${isScrolled
                   ? 'bg-black text-white hover:shadow-lg'
                   : 'bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-lg hover:scale-105'
-              }`}
+                }`}
             >
               <span className="relative z-10">회원가입</span>
               {!isScrolled && (
@@ -177,80 +171,61 @@ export default function Header() {
             aria-label="메뉴"
           >
             <span
-              className={`block h-0.5 w-6 transition-all ${
-                isScrolled ? 'bg-black' : 'bg-white'
-              } ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}
+              className={`block h-0.5 w-6 transition-all ${isScrolled ? 'bg-black' : 'bg-white'
+                } ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}
             />
             <span
-              className={`block h-0.5 w-6 transition-all ${
-                isScrolled ? 'bg-black' : 'bg-white'
-              } ${isMobileMenuOpen ? 'opacity-0' : ''}`}
+              className={`block h-0.5 w-6 transition-all ${isScrolled ? 'bg-black' : 'bg-white'
+                } ${isMobileMenuOpen ? 'opacity-0' : ''}`}
             />
             <span
-              className={`block h-0.5 w-6 transition-all ${
-                isScrolled ? 'bg-black' : 'bg-white'
-              } ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}
+              className={`block h-0.5 w-6 transition-all ${isScrolled ? 'bg-black' : 'bg-white'
+                } ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}
             />
           </button>
         </div>
 
-        {/* 모바일 메뉴 */}
-        <div
-          className={`md:hidden transition-all duration-300 overflow-hidden rounded-b-3xl ${
-            isMobileMenuOpen ? 'max-h-64' : 'max-h-0'
+      </div>
+
+      {/* 모바일 메뉴 */}
+      <div
+        className={`md:hidden absolute left-0 right-0 top-[80px] transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
           }`}
-        >
-          <nav className="px-6 py-4 space-y-4">
-            <a
-              href="#service"
-              className={`block py-2 transition-colors ${
-                isScrolled
-                  ? 'text-black hover:text-gray-600'
-                  : 'text-white hover:text-gray-200'
-              }`}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              서비스
-            </a>
-            <a
-              href="#pricing"
-              className={`block py-2 transition-colors ${
-                isScrolled
-                  ? 'text-black hover:text-gray-600'
-                  : 'text-white hover:text-gray-200'
-              }`}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              요금제
-            </a>
-            <button
-              className={`block px-6 py-2.5 rounded-full font-medium transition-all text-left ${
-                isScrolled
-                  ? 'text-black hover:bg-gray-100'
-                  : 'text-white hover:bg-white/10'
-              }`}
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                setIsLoginModalOpen(true);
-              }}
-            >
-              로그인
-            </button>
-            <button
-              className={`w-full py-2.5 px-6 rounded-full font-medium transition-all ${
-                isScrolled
-                  ? 'bg-black text-white hover:shadow-lg'
-                  : 'bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-lg'
-              }`}
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                setIsSignupModalOpen(true);
-              }}
-            >
-              회원가입
-            </button>
-          </nav>
-        </div>
+      >
+        <nav className="bg-white mx-4 rounded-2xl shadow-xl px-6 py-4 space-y-4 border border-gray-100">
+          <a
+            href="#service"
+            className="block py-2 text-gray-800 hover:text-orange-500 transition-colors font-medium"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            서비스
+          </a>
+          <a
+            href="#pricing"
+            className="block py-2 text-gray-800 hover:text-orange-500 transition-colors font-medium"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            요금제
+          </a>
+          <button
+            className="block w-full text-left py-2 text-gray-800 hover:text-orange-500 transition-colors font-medium"
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              setIsLoginModalOpen(true);
+            }}
+          >
+            로그인
+          </button>
+          <button
+            className="w-full py-2.5 px-6 rounded-full font-medium transition-all bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-lg"
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              setIsSignupModalOpen(true);
+            }}
+          >
+            회원가입
+          </button>
+        </nav>
       </div>
 
       {/* 로그인 모달 */}
