@@ -5,32 +5,38 @@ import { ChevronDown } from 'lucide-react';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
 
-export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
+export default function Header({ alwaysScrolled = false }) {
+  const [isScrolled, setIsScrolled] = useState(alwaysScrolled);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [serviceDropdownOpen, setServiceDropdownOpen] = useState(false);
+  const [portfolioDropdownOpen, setPortfolioDropdownOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
 
   useEffect(() => {
+    if (alwaysScrolled) return;
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [alwaysScrolled]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (serviceDropdownOpen && !event.target.closest('.service-dropdown-container')) {
         setServiceDropdownOpen(false);
       }
+      if (portfolioDropdownOpen && !event.target.closest('.portfolio-dropdown-container')) {
+        setPortfolioDropdownOpen(false);
+      }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [serviceDropdownOpen]);
+  }, [serviceDropdownOpen, portfolioDropdownOpen]);
 
   const serviceItems = [
     {
@@ -59,7 +65,7 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 mt-[30px] px-4 sm:px-6 lg:px-8">
       <div
         className={`max-w-6xl mx-auto transition-all duration-300 rounded-full ${isScrolled
-            ? 'bg-white text-black shadow-md'
+            ? 'bg-white text-black shadow-md border border-gray-200'
             : 'bg-transparent text-white'
           }`}
       >
@@ -95,7 +101,7 @@ export default function Header() {
                     : 'text-white hover:text-gray-200'
                   }`}
               >
-                서비스
+                SERVICE
                 <ChevronDown className="w-4 h-4" />
               </button>
 
@@ -124,6 +130,45 @@ export default function Header() {
                       </div>
                     ))}
                   </div>
+                </div>
+              )}
+            </div>
+
+            {/* 포트폴리오 드롭다운 */}
+            <div className="relative portfolio-dropdown-container">
+              <button
+                onClick={() => setPortfolioDropdownOpen(!portfolioDropdownOpen)}
+                onMouseEnter={() => setPortfolioDropdownOpen(true)}
+                className={`flex items-center gap-1 transition-colors ${isScrolled
+                    ? 'text-black hover:text-gray-600'
+                    : 'text-white hover:text-gray-200'
+                  }`}
+              >
+                PORTFOLIO
+                <ChevronDown className="w-4 h-4" />
+              </button>
+
+              {/* 드롭다운 메뉴 */}
+              {portfolioDropdownOpen && (
+                <div
+                  onMouseEnter={() => setPortfolioDropdownOpen(true)}
+                  onMouseLeave={() => setPortfolioDropdownOpen(false)}
+                  className="absolute left-1/2 -translate-x-1/2 top-[45px] w-[200px] bg-white rounded-2xl shadow-2xl p-2 animate-fadeIn z-50"
+                >
+                  <a
+                    href="/portfolio#tool"
+                    className="block px-6 py-3 text-gray-900 hover:bg-orange-50 hover:text-orange-500 rounded-xl transition-colors font-medium"
+                    onClick={() => setPortfolioDropdownOpen(false)}
+                  >
+                    TOOL
+                  </a>
+                  <a
+                    href="/portfolio#coding"
+                    className="block px-6 py-3 text-gray-900 hover:bg-orange-50 hover:text-orange-500 rounded-xl transition-colors font-medium"
+                    onClick={() => setPortfolioDropdownOpen(false)}
+                  >
+                    CODING
+                  </a>
                 </div>
               )}
             </div>
@@ -189,17 +234,36 @@ export default function Header() {
 
       {/* 모바일 메뉴 */}
       <div
-        className={`md:hidden absolute left-0 right-0 top-[80px] transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+        className={`md:hidden absolute left-0 right-0 top-[80px] transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}
       >
-        <nav className="bg-white mx-4 rounded-2xl shadow-xl px-6 py-4 space-y-4 border border-gray-100">
+        <nav className="bg-white mx-4 rounded-2xl shadow-xl px-6 py-4 space-y-2 border border-gray-100">
           <a
             href="#service"
             className="block py-2 text-gray-800 hover:text-orange-500 transition-colors font-medium"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            서비스
+            SERVICE
           </a>
+          <div className="space-y-1">
+            <div className="py-2 text-gray-800 font-medium">
+              PORTFOLIO
+            </div>
+            <a
+              href="/portfolio#tool"
+              className="block py-2 pl-4 text-gray-600 hover:text-orange-500 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              TOOL
+            </a>
+            <a
+              href="/portfolio#coding"
+              className="block py-2 pl-4 text-gray-600 hover:text-orange-500 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              CODING
+            </a>
+          </div>
           <a
             href="#pricing"
             className="block py-2 text-gray-800 hover:text-orange-500 transition-colors font-medium"
