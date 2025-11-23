@@ -101,7 +101,7 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }) {
         {/* 헤더 */}
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">회원가입</h2>
-          <p className="text-gray-600">TOOLBEE PLUS와 함께 시작하세요</p>
+          <p className="text-gray-600">TOOLB PLUS와 함께 시작하세요</p>
         </div>
 
         {/* 폼 */}

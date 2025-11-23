@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="flex flex-col justify-start items-start">
             <h2 className="text-2xl font-bold text-white mb-4">
               <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
-                TOOLBEE PLUS
+                TOOLB PLUS
               </span>
             </h2>
             <p className="text-gray-500 text-sm leading-relaxed max-w-sm">
@@ -31,7 +31,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
-          <p>© 2025 TOOLBEE PLUS. All rights reserved.</p>
+          <p>© 2025 TOOLB PLUS. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="hover:text-gray-400 transition-colors">이용약관</a>
             <a href="#" className="hover:text-gray-400 transition-colors">개인정보처리방침</a>

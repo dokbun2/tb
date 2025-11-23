@@ -1,17 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
-import LoginModal from './LoginModal';
-import SignupModal from './SignupModal';
+import { ChevronDown, LayoutDashboard, Settings } from 'lucide-react';
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 export default function Header({ alwaysScrolled = false }) {
   const [isScrolled, setIsScrolled] = useState(alwaysScrolled);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [serviceDropdownOpen, setServiceDropdownOpen] = useState(false);
   const [portfolioDropdownOpen, setPortfolioDropdownOpen] = useState(false);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
 
   useEffect(() => {
     if (alwaysScrolled) return;
@@ -78,7 +75,7 @@ export default function Header({ alwaysScrolled = false }) {
               <div className="flex gap-1">
               </div>
             </div>
-            <span className="text-xl font-bold">TOOLBEE PLUS</span>
+            <span className="text-xl font-bold">TOOLB PLUS</span>
             <span
               className={`text-xs px-2 py-0.5 rounded-full border ${isScrolled
                   ? 'border-gray-400 text-gray-600'
@@ -95,7 +92,10 @@ export default function Header({ alwaysScrolled = false }) {
             <div className="relative service-dropdown-container">
               <button
                 onClick={() => setServiceDropdownOpen(!serviceDropdownOpen)}
-                onMouseEnter={() => setServiceDropdownOpen(true)}
+                onMouseEnter={() => {
+                  setServiceDropdownOpen(true);
+                  setPortfolioDropdownOpen(false);
+                }}
                 className={`flex items-center gap-1 transition-colors ${isScrolled
                     ? 'text-black hover:text-gray-600'
                     : 'text-white hover:text-gray-200'
@@ -138,7 +138,10 @@ export default function Header({ alwaysScrolled = false }) {
             <div className="relative portfolio-dropdown-container">
               <button
                 onClick={() => setPortfolioDropdownOpen(!portfolioDropdownOpen)}
-                onMouseEnter={() => setPortfolioDropdownOpen(true)}
+                onMouseEnter={() => {
+                  setPortfolioDropdownOpen(true);
+                  setServiceDropdownOpen(false);
+                }}
                 className={`flex items-center gap-1 transition-colors ${isScrolled
                     ? 'text-black hover:text-gray-600'
                     : 'text-white hover:text-gray-200'
@@ -186,27 +189,55 @@ export default function Header({ alwaysScrolled = false }) {
 
           {/* 우측 메뉴 */}
           <div className="hidden md:flex items-center gap-3">
-            <button
-              onClick={() => setIsLoginModalOpen(true)}
-              className={`px-6 py-2.5 rounded-full font-medium transition-all ${isScrolled
-                  ? 'text-black hover:bg-gray-100'
-                  : 'text-white hover:bg-white/10'
-                }`}
-            >
-              로그인
-            </button>
-            <button
-              onClick={() => setIsSignupModalOpen(true)}
-              className={`px-6 py-2.5 rounded-full font-medium transition-all overflow-hidden relative group ${isScrolled
-                  ? 'bg-black text-white hover:shadow-lg'
-                  : 'bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-lg hover:scale-105'
-                }`}
-            >
-              <span className="relative z-10">회원가입</span>
-              {!isScrolled && (
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity" />
-              )}
-            </button>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button
+                  className={`px-6 py-2.5 rounded-full font-medium transition-all ${isScrolled
+                      ? 'text-black hover:bg-gray-100'
+                      : 'text-white hover:bg-white/10'
+                    }`}
+                >
+                  로그인
+                </button>
+              </SignInButton>
+              <SignUpButton mode="modal">
+                <button
+                  className={`px-6 py-2.5 rounded-full font-medium transition-all overflow-hidden relative group ${isScrolled
+                      ? 'bg-black text-white hover:shadow-lg'
+                      : 'bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-lg hover:scale-105'
+                    }`}
+                >
+                  <span className="relative z-10">회원가입</span>
+                  {!isScrolled && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  )}
+                </button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox: "w-10 h-10"
+                  }
+                }}
+                userProfileMode="navigation"
+                userProfileUrl="/profile"
+              >
+                <UserButton.MenuItems>
+                  <UserButton.Link
+                    label="대시보드"
+                    labelIcon={<LayoutDashboard size={16} />}
+                    href="/dashboard"
+                  />
+                  <UserButton.Link
+                    label="프로필 설정"
+                    labelIcon={<Settings size={16} />}
+                    href="/profile"
+                  />
+                </UserButton.MenuItems>
+              </UserButton>
+            </SignedIn>
           </div>
 
           {/* 모바일 햄버거 메뉴 버튼 */}
@@ -271,46 +302,53 @@ export default function Header({ alwaysScrolled = false }) {
           >
             요금제
           </a>
-          <button
-            className="block w-full text-left py-2 text-gray-800 hover:text-orange-500 transition-colors font-medium"
-            onClick={() => {
-              setIsMobileMenuOpen(false);
-              setIsLoginModalOpen(true);
-            }}
-          >
-            로그인
-          </button>
-          <button
-            className="w-full py-2.5 px-6 rounded-full font-medium transition-all bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-lg"
-            onClick={() => {
-              setIsMobileMenuOpen(false);
-              setIsSignupModalOpen(true);
-            }}
-          >
-            회원가입
-          </button>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button
+                className="block w-full text-left py-2 text-gray-800 hover:text-orange-500 transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                로그인
+              </button>
+            </SignInButton>
+            <SignUpButton mode="modal">
+              <button
+                className="w-full py-2.5 px-6 rounded-full font-medium transition-all bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-lg"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                회원가입
+              </button>
+            </SignUpButton>
+          </SignedOut>
+          <SignedIn>
+            <div className="flex items-center gap-3 py-2">
+              <UserButton
+                appearance={{
+                  elements: {
+                    avatarBox: "w-10 h-10"
+                  }
+                }}
+                userProfileMode="navigation"
+                userProfileUrl="/profile"
+              >
+                <UserButton.MenuItems>
+                  <UserButton.Link
+                    label="대시보드"
+                    labelIcon={<LayoutDashboard size={16} />}
+                    href="/dashboard"
+                  />
+                  <UserButton.Link
+                    label="프로필 설정"
+                    labelIcon={<Settings size={16} />}
+                    href="/profile"
+                  />
+                </UserButton.MenuItems>
+              </UserButton>
+              <span className="text-gray-800 font-medium">내 계정</span>
+            </div>
+          </SignedIn>
         </nav>
       </div>
-
-      {/* 로그인 모달 */}
-      <LoginModal
-        isOpen={isLoginModalOpen}
-        onClose={() => setIsLoginModalOpen(false)}
-        onSwitchToSignup={() => {
-          setIsLoginModalOpen(false);
-          setIsSignupModalOpen(true);
-        }}
-      />
-
-      {/* 회원가입 모달 */}
-      <SignupModal
-        isOpen={isSignupModalOpen}
-        onClose={() => setIsSignupModalOpen(false)}
-        onSwitchToLogin={() => {
-          setIsSignupModalOpen(false);
-          setIsLoginModalOpen(true);
-        }}
-      />
     </header>
   );
 }

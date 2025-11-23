@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import CherryBlossom from "./components/CherryBlossom";
+import { ClerkProvider } from '@clerk/nextjs';
 
 const paperlogy = localFont({
   src: [
@@ -54,21 +55,29 @@ const paperlogy = localFont({
 });
 
 export const metadata = {
-  title: "TOOLBEE PLUS",
+  title: "TOOLB PLUS",
   description: "AI 기반 영상제작 프레임워크",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ko">
-      <body
-        className={`${paperlogy.variable} font-sans antialiased`}
-      >
-        <CherryBlossom />
-        <div className="relative z-10">
-          {children}
-        </div>
-      </body>
-    </html>
+    <ClerkProvider
+      appearance={{
+        elements: {
+          footer: "hidden" // Clerk 배지 숨기기
+        }
+      }}
+    >
+      <html lang="ko">
+        <body
+          className={`${paperlogy.variable} font-sans antialiased`}
+        >
+          <CherryBlossom />
+          <div className="relative z-10">
+            {children}
+          </div>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

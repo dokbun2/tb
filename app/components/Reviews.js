@@ -97,10 +97,10 @@ export default function Reviews() {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             내 세계에 플러스가 되는
             <br />
-            TOOLBEE PLUS 후기
+            TOOLB PLUS 후기
           </h2>
           <p className="text-lg md:text-xl text-gray-600">
-            영상 제작에 필요한 모든 서비스를 TOOLBEE PLUS에서 한 번에 경험하세요.
+            영상 제작에 필요한 모든 서비스를 TOOLB PLUS에서 한 번에 경험하세요.
           </p>
         </div>
 

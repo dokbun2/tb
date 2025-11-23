@@ -22,14 +22,14 @@ export default function Hero() {
           </span>
           <br />
           <span className="bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent">
-            AITOOLB
+            TOOLB
           </span>
         </h1>
 
         {/* 설명 */}
         <p className="text-xl sm:text-2xl md:text-3xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
           AI 기반 영상제작 프레임워크로
-          <br/>
+          <br />
           영상제작을 창작을 더 쉽고 빠르게
         </p>
 

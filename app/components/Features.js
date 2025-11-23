@@ -30,7 +30,7 @@ export default function Features() {
         {/* 섹션 헤더 */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            TOOLBEE PLUS란?
+            TOOLB PLUS란?
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
             창작자를 위한 최고의 도구로 당신의 아이디어를 현실로 만드세요

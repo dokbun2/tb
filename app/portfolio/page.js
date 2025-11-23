@@ -36,7 +36,7 @@ export default function PortfolioPage() {
         id: 1,
         title: [
           { text: 'TB CODE', color: 'text-red-500' },
-          { text: ' 코드편집기', color: 'text-gray-900' }
+          { text: ' 코드편집기', color: 'text-red-500' }
         ],
         description: '심플하고 간편한 코드편집기의 끝판왕',
         image: '/images/tool1.png',

@@ -70,7 +70,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToSignup }) {
         {/* 헤더 */}
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">로그인</h2>
-          <p className="text-gray-600">TOOLBEE PLUS에 오신 것을 환영합니다</p>
+          <p className="text-gray-600">TOOLB PLUS에 오신 것을 환영합니다</p>
         </div>
 
         {/* 폼 */}

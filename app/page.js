@@ -24,7 +24,7 @@ export default function Home() {
               나만의 영감에 집중하세요.
               <br />
               <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
-                TOOLBEE PLUS가 창작의 가능성을 현실로 만듭니다.
+                TOOLB PLUS가 창작의 가능성을 현실로 만듭니다.
               </span>
             </h2>
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto mb-12">
