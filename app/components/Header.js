@@ -68,7 +68,7 @@ export default function Header({ alwaysScrolled = false }) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 mt-[30px] px-4 sm:px-6 lg:px-8">
       <div
-        className={`max-w-6xl mx-auto transition-all duration-300 rounded-full ${isScrolled
+        className={`max-w-7xl mx-auto transition-all duration-300 rounded-full ${isScrolled
             ? 'bg-white text-black shadow-md border border-gray-200'
             : 'bg-transparent text-white'
           }`}

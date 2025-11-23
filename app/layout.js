@@ -57,6 +57,21 @@ const paperlogy = localFont({
 export const metadata = {
   title: "TOOLB PLUS",
   description: "AI 기반 영상제작 프레임워크",
+  icons: {
+    icon: [
+      { url: '/images/favicon_io/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/images/favicon_io/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/favicon_io/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/images/favicon_io/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { rel: 'android-chrome', url: '/images/favicon_io/android-chrome-192x192.png', sizes: '192x192' },
+      { rel: 'android-chrome', url: '/images/favicon_io/android-chrome-512x512.png', sizes: '512x512' },
+    ],
+  },
+  manifest: '/images/favicon_io/site.webmanifest',
 };
 
 export default function RootLayout({ children }) {
