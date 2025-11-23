@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import CherryBlossom from "./components/CherryBlossom";
 
 const paperlogy = localFont({
   src: [
@@ -63,7 +64,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${paperlogy.variable} font-sans antialiased`}
       >
-        {children}
+        <CherryBlossom />
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   );

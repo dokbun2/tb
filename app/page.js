@@ -4,6 +4,7 @@ import Features from './components/Features';
 import ServiceDetail from './components/ServiceDetail';
 import Reviews from './components/Reviews';
 import Pricing from './components/Pricing';
+import Footer from './components/Footer';
 
 export default function Home() {
   return (
@@ -39,11 +40,7 @@ export default function Home() {
         <Pricing />
 
         {/* 푸터 */}
-        <footer className="bg-gray-900 text-white py-12 px-4">
-          <div className="max-w-7xl mx-auto text-center">
-            <p className="text-gray-400">© 2025 TOOLBEE PLUS. All rights reserved.</p>
-          </div>
-        </footer>
+        <Footer />
       </main>
     </>
   );
