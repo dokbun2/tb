@@ -34,10 +34,14 @@ export default function PortfolioPage() {
     TOOL: [
       {
         id: 1,
-        title: 'AI 이미지 생성기',
-        description: '텍스트를 입력하면 AI가 자동으로 고품질 이미지를 생성합니다.',
-        image: '/placeholder-1.jpg',
-        tags: ['AI', 'Image', 'Generation']
+        title: [
+          { text: 'TB CODE', color: 'text-red-500' },
+          { text: ' 코드편집기', color: 'text-gray-900' }
+        ],
+        description: '심플하고 간편한 코드편집기의 끝판왕',
+        image: '/images/tool1.png',
+        tags: ['Code', 'Editor', 'Simple'],
+        link: 'https://aitoolb.com/66'
       },
       {
         id: 2,
@@ -133,19 +137,38 @@ export default function PortfolioPage() {
             {portfolioData[activeCategory].map((item) => (
               <div
                 key={item.id}
+                onClick={() => item.link && window.open(item.link, '_blank')}
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group"
               >
                 {/* 이미지 영역 */}
                 <div className="relative h-48 bg-gradient-to-br from-orange-100 to-pink-100 flex items-center justify-center overflow-hidden">
-                  <div className="text-6xl group-hover:scale-110 transition-transform duration-300">
-                    {activeCategory === 'TOOL' ? '🛠️' : '💻'}
-                  </div>
+                  {item.image ? (
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div className="text-6xl group-hover:scale-110 transition-transform duration-300">
+                      {activeCategory === 'TOOL' ? '🛠️' : '💻'}
+                    </div>
+                  )}
                 </div>
 
                 {/* 콘텐츠 영역 */}
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-gray-900 group-hover:text-orange-500 transition-colors">
-                    {item.title}
+                  <h3 className="text-xl font-bold mb-2 transition-colors">
+                    {Array.isArray(item.title) ? (
+                      <>
+                        {item.title.map((part, index) => (
+                          <span key={index} className={part.color}>
+                            {part.text}
+                          </span>
+                        ))}
+                      </>
+                    ) : (
+                      <span className="text-gray-900 group-hover:text-orange-500">{item.title}</span>
+                    )}
                   </h3>
                   <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                     {item.description}
