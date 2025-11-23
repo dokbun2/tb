@@ -1,14 +1,21 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { ChevronDown, LayoutDashboard, Settings } from 'lucide-react';
-import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { ChevronDown, LayoutDashboard, Settings, Lock } from 'lucide-react';
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton, useUser } from '@clerk/nextjs';
 
 export default function Header({ alwaysScrolled = false }) {
+  const { isSignedIn } = useUser();
   const [isScrolled, setIsScrolled] = useState(alwaysScrolled);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [serviceDropdownOpen, setServiceDropdownOpen] = useState(false);
   const [portfolioDropdownOpen, setPortfolioDropdownOpen] = useState(false);
+  const [showLoginAlert, setShowLoginAlert] = useState(false);
+
+  const handleAuthRequired = () => {
+    setShowLoginAlert(true);
+    setTimeout(() => setShowLoginAlert(false), 3000);
+  };
 
   useEffect(() => {
     if (alwaysScrolled) return;
@@ -91,22 +98,31 @@ export default function Header({ alwaysScrolled = false }) {
             {/* 서비스 드롭다운 */}
             <div className="relative service-dropdown-container">
               <button
-                onClick={() => setServiceDropdownOpen(!serviceDropdownOpen)}
-                onMouseEnter={() => {
-                  setServiceDropdownOpen(true);
-                  setPortfolioDropdownOpen(false);
+                onClick={() => {
+                  if (isSignedIn) {
+                    setServiceDropdownOpen(!serviceDropdownOpen);
+                  } else {
+                    handleAuthRequired();
+                  }
                 }}
-                className={`flex items-center gap-1 transition-colors ${isScrolled
+                onMouseEnter={() => {
+                  if (isSignedIn) {
+                    setServiceDropdownOpen(true);
+                    setPortfolioDropdownOpen(false);
+                  }
+                }}
+                className={`flex items-center gap-1 transition-colors ${
+                  isScrolled
                     ? 'text-black hover:text-gray-600'
                     : 'text-white hover:text-gray-200'
-                  }`}
+                } ${!isSignedIn ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 SERVICE
                 <ChevronDown className="w-4 h-4" />
               </button>
 
               {/* 드롭다운 메뉴 */}
-              {serviceDropdownOpen && (
+              {isSignedIn && serviceDropdownOpen && (
                 <div
                   onMouseEnter={() => setServiceDropdownOpen(true)}
                   onMouseLeave={() => setServiceDropdownOpen(false)}
@@ -137,22 +153,31 @@ export default function Header({ alwaysScrolled = false }) {
             {/* 포트폴리오 드롭다운 */}
             <div className="relative portfolio-dropdown-container">
               <button
-                onClick={() => setPortfolioDropdownOpen(!portfolioDropdownOpen)}
-                onMouseEnter={() => {
-                  setPortfolioDropdownOpen(true);
-                  setServiceDropdownOpen(false);
+                onClick={() => {
+                  if (isSignedIn) {
+                    setPortfolioDropdownOpen(!portfolioDropdownOpen);
+                  } else {
+                    handleAuthRequired();
+                  }
                 }}
-                className={`flex items-center gap-1 transition-colors ${isScrolled
+                onMouseEnter={() => {
+                  if (isSignedIn) {
+                    setPortfolioDropdownOpen(true);
+                    setServiceDropdownOpen(false);
+                  }
+                }}
+                className={`flex items-center gap-1 transition-colors ${
+                  isScrolled
                     ? 'text-black hover:text-gray-600'
                     : 'text-white hover:text-gray-200'
-                  }`}
+                } ${!isSignedIn ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 PORTFOLIO
                 <ChevronDown className="w-4 h-4" />
               </button>
 
               {/* 드롭다운 메뉴 */}
-              {portfolioDropdownOpen && (
+              {isSignedIn && portfolioDropdownOpen && (
                 <div
                   onMouseEnter={() => setPortfolioDropdownOpen(true)}
                   onMouseLeave={() => setPortfolioDropdownOpen(false)}
@@ -269,31 +294,57 @@ export default function Header({ alwaysScrolled = false }) {
           }`}
       >
         <nav className="bg-white mx-4 rounded-2xl shadow-xl px-6 py-4 space-y-2 border border-gray-100">
-          <a
-            href="#service"
-            className="block py-2 text-gray-800 hover:text-orange-500 transition-colors font-medium"
-            onClick={() => setIsMobileMenuOpen(false)}
+          <button
+            className={`block w-full text-left py-2 text-gray-800 transition-colors font-medium ${
+              isSignedIn ? 'hover:text-orange-500' : 'opacity-50 cursor-not-allowed'
+            }`}
+            onClick={(e) => {
+              if (!isSignedIn) {
+                e.preventDefault();
+                handleAuthRequired();
+              } else {
+                setIsMobileMenuOpen(false);
+              }
+            }}
           >
             SERVICE
-          </a>
-          <div className="space-y-1">
+          </button>
+          <div className={`space-y-1 ${!isSignedIn ? 'opacity-50' : ''}`}>
             <div className="py-2 text-gray-800 font-medium">
               PORTFOLIO
             </div>
-            <a
-              href="/portfolio#tool"
-              className="block py-2 pl-4 text-gray-600 hover:text-orange-500 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
+            <button
+              className={`block w-full text-left py-2 pl-4 text-gray-600 transition-colors ${
+                isSignedIn ? 'hover:text-orange-500' : 'cursor-not-allowed'
+              }`}
+              onClick={(e) => {
+                if (!isSignedIn) {
+                  e.preventDefault();
+                  handleAuthRequired();
+                } else {
+                  window.location.href = '/portfolio#tool';
+                  setIsMobileMenuOpen(false);
+                }
+              }}
             >
               TOOL
-            </a>
-            <a
-              href="/portfolio#coding"
-              className="block py-2 pl-4 text-gray-600 hover:text-orange-500 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
+            </button>
+            <button
+              className={`block w-full text-left py-2 pl-4 text-gray-600 transition-colors ${
+                isSignedIn ? 'hover:text-orange-500' : 'cursor-not-allowed'
+              }`}
+              onClick={(e) => {
+                if (!isSignedIn) {
+                  e.preventDefault();
+                  handleAuthRequired();
+                } else {
+                  window.location.href = '/portfolio#coding';
+                  setIsMobileMenuOpen(false);
+                }
+              }}
             >
               CODING
-            </a>
+            </button>
           </div>
           <a
             href="#pricing"
@@ -349,6 +400,19 @@ export default function Header({ alwaysScrolled = false }) {
           </SignedIn>
         </nav>
       </div>
+
+      {/* 로그인 알림 */}
+      {showLoginAlert && (
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[100] animate-fadeIn">
+          <div className="bg-orange-500 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3">
+            <Lock className="w-6 h-6" />
+            <div>
+              <p className="font-bold">로그인이 필요합니다</p>
+              <p className="text-sm opacity-90">서비스를 이용하려면 로그인해주세요</p>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
