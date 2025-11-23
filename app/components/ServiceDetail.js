@@ -25,7 +25,7 @@ const services = [
     title: '에디터',
     subtitle: '다면 사용자와 협업하여\n웹툰을 편집하고 맞춤 작품을 완성하세요.',
     description: '실시간 협업 기능으로 팀원들과 함께 작업하고,\n강력한 편집 도구로 작품을 완성하세요.',
-    image: '/images/subbanner.jpg',
+    image: '/images/editor_interface.svg',
     reverse: false,
   },
   {
@@ -47,9 +47,8 @@ export default function ServiceDetail() {
           return (
             <div
               key={index}
-              className={`flex flex-col ${
-                service.reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'
-              } items-center gap-12 lg:gap-20`}
+              className={`flex flex-col ${service.reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'
+                } items-center gap-12 lg:gap-20`}
             >
               {/* 이미지 */}
               <div className="flex-1 w-full">
