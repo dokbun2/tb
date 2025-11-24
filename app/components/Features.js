@@ -5,14 +5,14 @@ import { Wand2, Timer, Share2 } from 'lucide-react';
 const features = [
   {
     icon: Wand2,
-    title: 'AI 어시스트',
-    description: 'AI 기술로 웹툰 제작을 더 쉽고 빠르게. 자동 배경 생성, 컬러링, 효과음 제안까지.',
+    title: 'SERVICE',
+    description: 'AI툴비의 이미지,영상제작에 필요한 최적화된 툴을 소개합니다.',
     color: 'from-purple-500 to-pink-500',
   },
   {
     icon: Timer,
-    title: '빠른 제작',
-    description: '직관적인 툴로 제작 시간을 50% 단축. 드래그 앤 드롭으로 간편하게 작업하세요.',
+    title: 'POTFOLIO',
+    description: '툴비가 직접 개발한 다양한 툴과, 코딩자료 모음',
     color: 'from-yellow-500 to-orange-500',
   },
   {
