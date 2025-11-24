@@ -5,11 +5,13 @@ import { ChevronDown, LayoutDashboard, Settings, Lock } from 'lucide-react';
 import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton, useUser } from '@clerk/nextjs';
 
 export default function Header({ alwaysScrolled = false }) {
-  const { isSignedIn } = useUser();
+  const { isSignedIn, user } = useUser();
   const [isScrolled, setIsScrolled] = useState(alwaysScrolled);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [serviceDropdownOpen, setServiceDropdownOpen] = useState(false);
   const [portfolioDropdownOpen, setPortfolioDropdownOpen] = useState(false);
+  const [mobileServiceDropdownOpen, setMobileServiceDropdownOpen] = useState(false);
+  const [mobilePortfolioDropdownOpen, setMobilePortfolioDropdownOpen] = useState(false);
   const [showLoginAlert, setShowLoginAlert] = useState(false);
 
   const handleAuthRequired = () => {
@@ -290,61 +292,92 @@ export default function Header({ alwaysScrolled = false }) {
 
       {/* 모바일 메뉴 */}
       <div
-        className={`md:hidden absolute left-0 right-0 top-[80px] transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        className={`md:hidden absolute left-0 right-0 top-[80px] transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
           }`}
       >
         <nav className="bg-white mx-4 rounded-2xl shadow-xl px-6 py-4 space-y-2 border border-gray-100">
-          <button
-            className={`block w-full text-left py-2 text-gray-800 transition-colors font-medium ${
-              isSignedIn ? 'hover:text-orange-500' : 'opacity-50 cursor-not-allowed'
-            }`}
-            onClick={(e) => {
-              if (!isSignedIn) {
-                e.preventDefault();
-                handleAuthRequired();
-              } else {
-                setIsMobileMenuOpen(false);
-              }
-            }}
-          >
-            SERVICE
-          </button>
+          {/* SERVICE 드롭다운 */}
           <div className={`space-y-1 ${!isSignedIn ? 'opacity-50' : ''}`}>
-            <div className="py-2 text-gray-800 font-medium">
+            <button
+              className={`flex items-center justify-between w-full py-2 text-gray-800 transition-colors font-medium ${
+                isSignedIn ? 'hover:text-orange-500' : 'cursor-not-allowed'
+              }`}
+              onClick={(e) => {
+                if (!isSignedIn) {
+                  e.preventDefault();
+                  handleAuthRequired();
+                } else {
+                  setMobileServiceDropdownOpen(!mobileServiceDropdownOpen);
+                }
+              }}
+            >
+              SERVICE
+              <ChevronDown className={`w-4 h-4 transition-transform ${mobileServiceDropdownOpen ? 'rotate-180' : ''}`} />
+            </button>
+            {isSignedIn && mobileServiceDropdownOpen && (
+              <div className="pl-4 space-y-2">
+                {serviceItems.map((item, index) => (
+                  <div
+                    key={index}
+                    className="bg-gray-50 rounded-xl p-4 border border-gray-200"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="text-2xl">{item.icon}</div>
+                      <div>
+                        <h3 className="text-sm font-bold text-gray-900 mb-1">
+                          {item.title}
+                        </h3>
+                        <p className="text-xs text-gray-600 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* PORTFOLIO 드롭다운 */}
+          <div className={`space-y-1 ${!isSignedIn ? 'opacity-50' : ''}`}>
+            <button
+              className={`flex items-center justify-between w-full py-2 text-gray-800 transition-colors font-medium ${
+                isSignedIn ? 'hover:text-orange-500' : 'cursor-not-allowed'
+              }`}
+              onClick={(e) => {
+                if (!isSignedIn) {
+                  e.preventDefault();
+                  handleAuthRequired();
+                } else {
+                  setMobilePortfolioDropdownOpen(!mobilePortfolioDropdownOpen);
+                }
+              }}
+            >
               PORTFOLIO
-            </div>
-            <button
-              className={`block w-full text-left py-2 pl-4 text-gray-600 transition-colors ${
-                isSignedIn ? 'hover:text-orange-500' : 'cursor-not-allowed'
-              }`}
-              onClick={(e) => {
-                if (!isSignedIn) {
-                  e.preventDefault();
-                  handleAuthRequired();
-                } else {
-                  window.location.href = '/portfolio#tool';
-                  setIsMobileMenuOpen(false);
-                }
-              }}
-            >
-              TOOL
+              <ChevronDown className={`w-4 h-4 transition-transform ${mobilePortfolioDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
-            <button
-              className={`block w-full text-left py-2 pl-4 text-gray-600 transition-colors ${
-                isSignedIn ? 'hover:text-orange-500' : 'cursor-not-allowed'
-              }`}
-              onClick={(e) => {
-                if (!isSignedIn) {
-                  e.preventDefault();
-                  handleAuthRequired();
-                } else {
-                  window.location.href = '/portfolio#coding';
-                  setIsMobileMenuOpen(false);
-                }
-              }}
-            >
-              CODING
-            </button>
+            {isSignedIn && mobilePortfolioDropdownOpen && (
+              <div className="pl-4 space-y-1">
+                <button
+                  className="block w-full text-left py-2 text-gray-600 hover:text-orange-500 transition-colors"
+                  onClick={() => {
+                    window.location.href = '/portfolio#tool';
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  TOOL
+                </button>
+                <button
+                  className="block w-full text-left py-2 text-gray-600 hover:text-orange-500 transition-colors"
+                  onClick={() => {
+                    window.location.href = '/portfolio#coding';
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  CODING
+                </button>
+              </div>
+            )}
           </div>
           <a
             href="#pricing"
@@ -395,7 +428,7 @@ export default function Header({ alwaysScrolled = false }) {
                   />
                 </UserButton.MenuItems>
               </UserButton>
-              <span className="text-gray-800 font-medium">내 계정</span>
+              <span className="text-gray-800 font-medium">{user?.fullName || user?.firstName || '내 계정'}</span>
             </div>
           </SignedIn>
         </nav>
