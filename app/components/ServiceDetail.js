@@ -30,7 +30,7 @@ const services = [
   },
   {
     icon: Mic,
-    title: '더브',
+    title: '툴비',
     subtitle: 'AI 세팅에 딥-아카 베대니\n블람을 수 위에 없는 캐릭터 보다 팝핸 웰트까지.',
     description: 'AI 음성 합성 기술로 캐릭터에 생동감을 더하고,\n다양한 보이스로 몰입감 있는 콘텐츠를 제작하세요.',
     image: 'https://cdn.midjourney.com/74628670-4f77-466d-8c2d-a588a77a4e25/0_1.png',

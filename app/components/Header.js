@@ -71,8 +71,8 @@ export default function Header({ alwaysScrolled = false }) {
     <header className="fixed top-0 left-0 right-0 z-50 mt-[30px] px-4 sm:px-6 lg:px-8">
       <div
         className={`max-w-7xl mx-auto transition-all duration-300 rounded-full ${isScrolled
-            ? 'bg-white text-black shadow-md border border-gray-200'
-            : 'bg-transparent text-white'
+          ? 'bg-white text-black shadow-md border border-gray-200'
+          : 'bg-transparent text-white'
           }`}
       >
         <div className="flex items-center justify-between h-16 px-6">
@@ -87,8 +87,8 @@ export default function Header({ alwaysScrolled = false }) {
             <span className="text-xl font-bold">TOOLB PLUS</span>
             <span
               className={`text-xs px-2 py-0.5 rounded-full border ${isScrolled
-                  ? 'border-gray-400 text-gray-600'
-                  : 'border-white/50 text-white/80'
+                ? 'border-gray-400 text-gray-600'
+                : 'border-white/50 text-white/80'
                 }`}
             >
               beta
@@ -113,11 +113,10 @@ export default function Header({ alwaysScrolled = false }) {
                     setPortfolioDropdownOpen(false);
                   }
                 }}
-                className={`flex items-center gap-1 transition-colors ${
-                  isScrolled
-                    ? 'text-black hover:text-gray-600'
-                    : 'text-white hover:text-gray-200'
-                } ${!isSignedIn ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`flex items-center gap-1 transition-colors ${isScrolled
+                  ? 'text-black hover:text-gray-600'
+                  : 'text-white hover:text-gray-200'
+                  } ${!isSignedIn ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 SERVICE
                 <ChevronDown className="w-4 h-4" />
@@ -168,11 +167,10 @@ export default function Header({ alwaysScrolled = false }) {
                     setServiceDropdownOpen(false);
                   }
                 }}
-                className={`flex items-center gap-1 transition-colors ${
-                  isScrolled
-                    ? 'text-black hover:text-gray-600'
-                    : 'text-white hover:text-gray-200'
-                } ${!isSignedIn ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`flex items-center gap-1 transition-colors ${isScrolled
+                  ? 'text-black hover:text-gray-600'
+                  : 'text-white hover:text-gray-200'
+                  } ${!isSignedIn ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 PORTFOLIO
                 <ChevronDown className="w-4 h-4" />
@@ -203,11 +201,22 @@ export default function Header({ alwaysScrolled = false }) {
               )}
             </div>
 
+            {/* 커뮤니티 링크 */}
+            <a
+              href="/community"
+              className={`transition-colors font-medium ${isScrolled
+                ? 'text-black hover:text-gray-600'
+                : 'text-white hover:text-gray-200'
+                }`}
+            >
+              COMMUNITY
+            </a>
+
             <a
               href="#pricing"
               className={`transition-colors ${isScrolled
-                  ? 'text-black hover:text-gray-600'
-                  : 'text-white hover:text-gray-200'
+                ? 'text-black hover:text-gray-600'
+                : 'text-white hover:text-gray-200'
                 }`}
             >
               요금제
@@ -220,8 +229,8 @@ export default function Header({ alwaysScrolled = false }) {
               <SignInButton mode="modal">
                 <button
                   className={`px-6 py-2.5 rounded-full font-medium transition-all ${isScrolled
-                      ? 'text-black hover:bg-gray-100'
-                      : 'text-white hover:bg-white/10'
+                    ? 'text-black hover:bg-gray-100'
+                    : 'text-white hover:bg-white/10'
                     }`}
                 >
                   로그인
@@ -230,8 +239,8 @@ export default function Header({ alwaysScrolled = false }) {
               <SignUpButton mode="modal">
                 <button
                   className={`px-6 py-2.5 rounded-full font-medium transition-all overflow-hidden relative group ${isScrolled
-                      ? 'bg-black text-white hover:shadow-lg'
-                      : 'bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-lg hover:scale-105'
+                    ? 'bg-black text-white hover:shadow-lg'
+                    : 'bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-lg hover:scale-105'
                     }`}
                 >
                   <span className="relative z-10">회원가입</span>
@@ -299,9 +308,8 @@ export default function Header({ alwaysScrolled = false }) {
           {/* SERVICE 드롭다운 */}
           <div className={`space-y-1 ${!isSignedIn ? 'opacity-50' : ''}`}>
             <button
-              className={`flex items-center justify-between w-full py-2 text-gray-800 transition-colors font-medium ${
-                isSignedIn ? 'hover:text-orange-500' : 'cursor-not-allowed'
-              }`}
+              className={`flex items-center justify-between w-full py-2 text-gray-800 transition-colors font-medium ${isSignedIn ? 'hover:text-orange-500' : 'cursor-not-allowed'
+                }`}
               onClick={(e) => {
                 if (!isSignedIn) {
                   e.preventDefault();
@@ -341,9 +349,8 @@ export default function Header({ alwaysScrolled = false }) {
           {/* PORTFOLIO 드롭다운 */}
           <div className={`space-y-1 ${!isSignedIn ? 'opacity-50' : ''}`}>
             <button
-              className={`flex items-center justify-between w-full py-2 text-gray-800 transition-colors font-medium ${
-                isSignedIn ? 'hover:text-orange-500' : 'cursor-not-allowed'
-              }`}
+              className={`flex items-center justify-between w-full py-2 text-gray-800 transition-colors font-medium ${isSignedIn ? 'hover:text-orange-500' : 'cursor-not-allowed'
+                }`}
               onClick={(e) => {
                 if (!isSignedIn) {
                   e.preventDefault();
@@ -379,6 +386,13 @@ export default function Header({ alwaysScrolled = false }) {
               </div>
             )}
           </div>
+          <a
+            href="/community"
+            className="block py-2 text-gray-800 hover:text-orange-500 transition-colors font-medium"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            COMMUNITY
+          </a>
           <a
             href="#pricing"
             className="block py-2 text-gray-800 hover:text-orange-500 transition-colors font-medium"

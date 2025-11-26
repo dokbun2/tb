@@ -17,8 +17,8 @@ const features = [
   },
   {
     icon: Share2,
-    title: '간편한 배포',
-    description: '클릭 한 번으로 작품 공유. 다양한 플랫폼에 동시 배포하고 독자를 만나보세요.',
+    title: 'COMMUNITY',
+    description: '툴비가 전하는 다양한 정보를 한눈에 살펴볼 수 있습니다.',
     color: 'from-blue-500 to-cyan-500',
   },
 ];
