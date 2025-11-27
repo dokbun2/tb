@@ -45,10 +45,14 @@ export default function PortfolioPage() {
       },
       {
         id: 2,
-        title: '웹툰 편집 도구',
-        description: '웹툰 제작에 필요한 모든 편집 기능을 제공합니다.',
-        image: '/placeholder-2.jpg',
-        tags: ['Webtoon', 'Editor', 'Design']
+        title: [
+          { text: 'TB SVG', color: 'text-blue-500' },
+          { text: ' 편집기', color: 'text-blue-500' }
+        ],
+        description: '무료 SVG 편집기로 벡터 이미지를 손쉽게 편집하고 제작할 수 있습니다.',
+        image: 'https://cdn.midjourney.com/49ea3d44-96ed-4350-93da-533f793aad24/0_0.png',
+        tags: ['SVG', 'Editor', 'Free'],
+        link: 'https://svg.aitoolb.com/'
       },
       {
         id: 3,
