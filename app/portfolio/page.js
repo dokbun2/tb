@@ -35,7 +35,7 @@ export default function PortfolioPage() {
       {
         id: 1,
         title: [
-          { text: 'TB CODE', color: 'text-red-500' },
+          { text: '', color: 'text-red-500' },
           { text: ' 코드편집기', color: 'text-red-500' }
         ],
         description: '심플하고 간편한 코드편집기의 끝판왕',
@@ -46,7 +46,7 @@ export default function PortfolioPage() {
       {
         id: 2,
         title: [
-          { text: 'TB SVG', color: 'text-blue-500' },
+          { text: 'SVG', color: 'text-blue-500' },
           { text: ' 편집기', color: 'text-blue-500' }
         ],
         description: '무료 SVG 편집기로 벡터 이미지를 손쉽게 편집하고 제작할 수 있습니다.',
@@ -56,10 +56,11 @@ export default function PortfolioPage() {
       },
       {
         id: 3,
-        title: '캐릭터 생성기',
+        title: 'JSON 에디터',
         description: '원하는 스타일의 캐릭터를 빠르게 생성할 수 있습니다.',
-        image: '/placeholder-3.jpg',
-        tags: ['Character', 'AI', 'Design']
+        image: 'https://cdn.midjourney.com/fd109101-fcd1-4cd0-8d28-acd1ed2ddc1a/0_2.png',
+        tags: ['JSON', 'Editor', 'Tool'],
+        link: 'https://json.aitoolb.com/'
       },
       {
         id: 4,
@@ -72,10 +73,11 @@ export default function PortfolioPage() {
     CODING: [
       {
         id: 5,
-        title: 'React 컴포넌트 라이브러리',
+        title: 'DAS웹페이지',
         description: '재사용 가능한 React 컴포넌트 모음입니다.',
-        image: '/placeholder-5.jpg',
-        tags: ['React', 'Component', 'Library']
+        image: 'https://cdn.midjourney.com/fd109101-fcd1-4cd0-8d28-acd1ed2ddc1a/0_1.png',
+        tags: ['React', 'Component', 'Library'],
+        link: 'https://dasstudio.netlify.app/'
       },
       {
         id: 6,

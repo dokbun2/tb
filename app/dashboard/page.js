@@ -112,7 +112,7 @@ export default function DashboardPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-6">최근 활동</h2>
             <div className="space-y-4">
               {[
-                { title: 'TB CODE 편집기 사용', time: '2시간 전', icon: '💻' },
+                { title: 'CODE 편집기 사용', time: '2시간 전', icon: '💻' },
                 { title: '새 프로젝트 생성', time: '5시간 전', icon: '✨' },
                 { title: '웹툰 편집 완료', time: '1일 전', icon: '🎨' },
                 { title: '크레딧 충전', time: '3일 전', icon: '💰' },

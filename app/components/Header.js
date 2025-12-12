@@ -61,7 +61,7 @@ export default function Header({ alwaysScrolled = false }) {
       icon: '✏️',
     },
     {
-      title: '더브',
+      title: '툴비',
       description: 'AI 세팅에 딥-아카 베대니 블람을 수 위에 없는 캐릭터 보다 팝핸 웰트까지.',
       icon: '🎭',
     },
@@ -172,7 +172,7 @@ export default function Header({ alwaysScrolled = false }) {
                   : 'text-white hover:text-gray-200'
                   } ${!isSignedIn ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
-                PORTFOLIO
+                PROJECT
                 <ChevronDown className="w-4 h-4" />
               </button>
 
@@ -360,7 +360,7 @@ export default function Header({ alwaysScrolled = false }) {
                 }
               }}
             >
-              PORTFOLIO
+              PROJECT
               <ChevronDown className={`w-4 h-4 transition-transform ${mobilePortfolioDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
             {isSignedIn && mobilePortfolioDropdownOpen && (
